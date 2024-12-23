@@ -1,0 +1,136 @@
+
+:root {
+    --primary-color: #2e2e2f;
+    --secondary-color: #b53838;
+    --text-color: #e9e9e9;
+    --transition-speed: 0.5s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--primary-color);
+}
+
+.navbar-nav{
+    
+    display: flex;
+    justify-content: center;
+    width: 100%;
+            }
+    .navbar-nav .nav-item .nav-link{
+        color:brown
+    }
+
+
+
+.about-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 20px;
+    background-color: var(--primary-color);
+}
+
+.about-section .content {
+    flex: 1;
+    min-width: 300px;
+    margin-right: 20px;
+}
+
+.about-section h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+.about-section .image-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-section .image-container img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-speed);
+}
+
+.about-section .image-container img:hover {
+    transform: scale(1.05);
+}
+.btnm {
+    color: #ffffff;  
+    background-color: #771011;
+    text-decoration: none;
+    font-size: .7em;
+    font-weight: 400;
+    display: inline-block;
+    padding: 0.9375em 2.1875em;
+    letter-spacing: 1px;
+    border-radius :30px; 
+    margin-bottom: 40px;
+    animation: fade-in  1s ease forwards;
+    animation-delay: 0.2s;
+    transition: 0.5 ease;
+   }
+   .btnm:hover{
+       background-color:#380305 ;
+       transform:scale(1.1) ;
+   
+   }
+   
+
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.fade-in:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.fade-in:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.fade-in:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-section .content {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
