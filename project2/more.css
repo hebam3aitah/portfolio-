@@ -1,0 +1,136 @@
+
+:root {
+    /* --bg-color:#000000; */
+    --text-color: #f3f3f3;
+    --primary-color: #771011;
+    --progress-bg: #fff2f2;
+    --transition-speed: 0.3s;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+
+h4 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    --text-color: #f3f3f3;
+    border-bottom: 2px ;
+    display: inline-block;
+}
+
+.navbar-nav{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+            }
+    .navbar-nav .nav-item .nav-link{
+        color:brown
+    }
+
+
+.resume {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+    background: #8d8585;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1s ease;
+}
+
+/* Skills */
+.skill {
+    margin-top:30px ;
+    margin-bottom: 20px;
+}
+
+.skill p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 10px;
+    background: var(--progress-bg);
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress::after {
+    content: "";
+    display: block;
+    height: 100%;
+    background: var(--primary-color);
+    width: var(--progress);
+    transition: width var(--transition-speed);
+}
+
+
+.timeline {
+    margin-top: 20px;
+}
+
+.event {
+    margin-bottom: 30px;
+    border-left: 2px solid var(--primary-color);
+    padding-left: 10px;
+}
+
+.event p:first-child {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.event h3 {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+
+
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .resume {
+        flex-direction: column;
+        align-items: center;
+    }
+}
