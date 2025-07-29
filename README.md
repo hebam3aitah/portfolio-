@@ -5,13 +5,19 @@
 ---
 **project portfolio website css html**
 
-├── Home ( scrool: servics)/        
-├── project/ 
-├── SKILLS/      
-├── contact/ 
-├── about me/    
-├── MORE DETAILS/ 
+├── Home ( scrool: servics)     
+├── project
+├── SKILLS     
+├── contact
+├── about me  
+├── MORE DETAILS
 └── README.md
+
+- **Frontend:** React, Tailwind CSS
+- **Backend:** Node.js, Express
+- **Database:** MongoDB
+- **Mobile:** React Native (قيد التطوير)
+- **Authentication:** JWT
 ---
 # Contact
 Hebah Almaaitah
