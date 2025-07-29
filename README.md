@@ -6,13 +6,13 @@
 **project portfolio website css html**
 
 ├── Home ( scrool: servics)/        
-├── project
-├── SKILLS     
-├── contact 
-├── about me     
-├── MORE DETAILS
+├── project/ 
+├── SKILLS/      
+├── contact/ 
+├── about me/    
+├── MORE DETAILS/ 
 └── README.md
-.---
+---
 # Contact
 Hebah Almaaitah
 📧 hebam3aitah@gmail.com
