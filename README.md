@@ -1,20 +1,17 @@
-# The First Project For me :
+# First Project :
 
-# portfolio-website :
-*  URL : https://hebam3aitah.github.io/portfolio-/ 
+# Portfolio-Website :
+*  URL   :   https://hebam3aitah.github.io/portfolio-/ 
 *  MOKUP : https://www.figma.com/design/7WBByx4SG4kBE6Xf9F6vjY/Untitled?node-id=0-1&t=SmU8TWniMGNHjPD0-1
 ---
-# project portfolio website css html:#
-- **Home ( scrool: servics)** 
+# Project Portfolio Pages : #
+- **HomePage** 
 - **project** 
 - **SKILLS** 
 - **contact**
-- **MORE DETAILS**
 - **about me**
-- **README.md**
 ---
 # Contact :
-Hebah Almaaitah
-📧 hebam3aitah@gmail.com
-📱 +962-789908162
+hebam3aitah@gmail.com
++962-789908162
 
