@@ -12,6 +12,6 @@
 - **about me**
 ---
 # Contact :
-hebam3aitah@gmail.com
-+962-789908162
+* Email:  hebam3aitah@gmail.com
+* Phone:  +962-789908162
 
