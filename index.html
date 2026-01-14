@@ -1,159 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>home page</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heba Al-Maitah - Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="css/style.css">
+ <script src="js/projects.js"></script>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="index.css" />
-  </head>
+  <script src="js/main.js" defer></script>
 
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="index.html"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="aboutme.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="project.html">project</a>
-            </li>
+</head>
 
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="skills.html">skills</a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link" href="Dawnland CV" onclick="window.location.href='cv.pdf'">Dawnland CV</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div class="contener">
-      <div class="photo">
-        <img src="me.png" alt="Heba Al-Maitah" />
-      </div>
-
-      <section class="main">
-        <div class="text">
-          <h2>Hello! I’m Heba Al-Maitah</h6>
-          <h1>
-            FULL STACK
-            <i class="fa-solid fa-laptop"></i>
-          </h1>
-          <h3>WEB DEVELOPMENT</h1>
-        
-
-        <!-- <a href="#cv" class="main-btn">Download CV</a> -->
-        <button class="download-btn" onclick="window.location.href='cv.pdf'">Download CV </button>
-        </div>
-        <div class="socaial-icons">
-          <a href="https://github.com/hebam3aitah"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-          <a href="https://www.facebook.com/share/15Vd2sryhv/?mibextid=wwXIfr"
-            ><i class="fa-brands fa-facebook"></i
-          ></a>
-          <a href="0789908162"><i class="fa-solid fa-phone-volume"></i></a>
-          <a href="www.linkedin.com/in/هبه-المعايطه-a0a054292"
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-          <a href="mailto:hebam3aitah@gmail.com"
-            ><i class="fa-regular fa-envelope"></i
-          ></a>
-        </div>
-      </section>
-    </div>
-
-<h1 class="text-bold text-center">My services</h1>
-<hr>
-
-<section style="margin-bottom: 10px; padding: 10px;">
-  <div class="contener">
-    <div class="card">
-      <img src="Top-6-Front-End-Web-Development-Tools-to-Increase-Your-Productivity-in-2020-1.jpg" alt="Card Image" class="card-img">
-      <div class="card-body">
-        <h3 class="card-title">Create Web</h3>
-        <p class="card-description">Learn how to create responsive, modern websites using HTML, CSS, and JavaScript. From simple pages to dynamic web applications, this card introduces web development basics.</p>
-        
+<body>
+  <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark  fixed-top  ">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#experience">Experience</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#certifications">Certifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <div class="card">
-      <img src="api-development.webp" alt="Card Image" class="card-img">
-      <div class="card-body">
-        <h3 class="card-title">API Development</h3>
-        <p class="card-description">Explore the process of creating RESTful APIs. Learn how to build, test, and secure your APIs for integrating services, data, and applications.</p>
-       
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 text-center text-lg-start hero-content">
+          <div class="hero-text">
+            <h2>Hello! I'm</h2>
+            <h1>Heba Al-Maitah</h1>
+            <h3><i class="fa-solid fa-laptop"></i> Full Stack Web Developer</h3>
+<a class="download-btn d-inline-block" href="cv.pdf" target="_blank" rel="noopener noreferrer">
+  <i class="fa-solid fa-download"></i> Download CV
+</a>          
+            <div class="social-icons">
+              <a href="https://github.com/hebam3aitah" target="_blank"><i class="fa-brands fa-github"></i></a>
+              <a href="https://www.facebook.com/share/15Vd2sryhv/?mibextid=wwXIfr" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.linkedin.com/in/heba-al-maitah" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="mailto:hebam3aitah@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+              <a href="tel:+962789908162"><i class="fa-solid fa-phone-volume"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <img src="image/me.png" alt="Heba Al-Maitah" class="profile-photo" />
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <img src="images.jpg" alt="Card Image" class="card-img">
-      <div class="card-body">
-        <h3 class="card-title">SQL Server</h3>
-        <p class="card-description">Dive deep into SQL Server and learn how to manage databases, write complex queries, and optimize performance to handle large datasets efficiently.</p>
-    
+  <!-- About Section -->
+  <section id="about" class="section about-section">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="about-card">
+          <div class="about-top">
+            <p class="about-lead">
+              I’m a Software Engineer focused on building responsive web apps and reliable REST APIs.
+              I enjoy turning requirements into clean, scalable solutions and improving user experience.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-block">
+              <h4 class="about-h">Highlights</h4>
+              <ul class="about-list">
+                <li>Full-stack projects using React, Node.js, and RESTful APIs</li>
+                <li>Database work with SQL (Oracle/PostgreSQL/MySQL) and NoSQL (MongoDB/Firebase)</li>
+                <li>Strong troubleshooting mindset from enterprise systems (Orange – Customer Management)</li>
+                <li>Team collaboration with Agile/Scrum, GitHub, Postman, and documentation</li>
+              </ul>
+            </div>
+
+            <div class="about-block">
+              <h4 class="about-h">Quick Info</h4>
+
+              <div class="about-facts">
+                <span class="fact">
+                  <i class="fa-solid fa-location-dot"></i>
+                  Jordan
+                </span>
+
+                <span class="fact">
+                  <i class="fa-solid fa-briefcase"></i>
+                  Open to: Full-Stack / Frontend
+                </span>
+
+                <span class="fact">
+                  <i class="fa-solid fa-code"></i>
+                  React • Node.js • SQL
+                </span>
+
+                <a class="fact fact-link" href="#contact">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  Contact me
+                </a>
+              </div>
+
+              <div class="about-now">
+                <span class="badge-now">Now</span>
+                <p>
+                  Training at Orange (Customer Management), working with enterprise systems and strengthening
+                  problem-solving and debugging skills.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /about-card -->
       </div>
     </div>
   </div>
 </section>
 
 
-<footer class="footer">
-  <p class="footer-title">Copyrights @ <span>Heba Al-Maitah</span> 2024</p>
-  <div class="socaial-icons">
-    <a href="https://github.com/hebam3aitah"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.facebook.com/share/15Vd2sryhv/?mibextid=wwXIfr"><i class="fa-brands fa-facebook"></i></a>
-    <a href="0789908162"><i class="fa-solid fa-phone-volume"></i></a>
-    <a href="www.linkedin.com/in/هبه-المعايطه-a0a054292"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="mailto:hebam3aitah@gmail.com"><i class="fa-regular fa-envelope"></i></a>
-  </div>
-</footer>
+  <!-- Skills Section -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <h2 class="section-title">My Skills</h2>
+      
+      <div class="skills-container">
+        <!-- Frontend Skills -->
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fa-solid fa-palette"></i>
+          </div>
+          <h4>Frontend Development</h4>
+          <div class="skill-items">
+            <span class="skill-item">React.js</span>
+            <span class="skill-item">Next.js</span>
+            <span class="skill-item">HTML5</span>
+            <span class="skill-item">CSS3</span>
+            <span class="skill-item">Tailwind CSS</span>
+            <span class="skill-item">Bootstrap</span>
+            <span class="skill-item">JavaScript</span>
+          </div>
+        </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+        <!-- Backend Skills -->
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fa-solid fa-server"></i>
+          </div>
+          <h4>Backend Development</h4>
+          <div class="skill-items">
+            <span class="skill-item">Node.js</span>
+            <span class="skill-item">Express.js</span>
+            <span class="skill-item">RESTful APIs</span>
+            <span class="skill-item">C#</span>
+            <span class="skill-item">.NET Core</span>
+            <span class="skill-item">API Design</span>
+          </div>
+        </div>
+
+        <!-- Database Skills -->
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <h4>Database Management</h4>
+          <div class="skill-items">
+            <span class="skill-item">Oracle</span>
+            <span class="skill-item">PostgreSQL</span>
+            <span class="skill-item">MySQL</span>
+            <span class="skill-item">MongoDB</span>
+            <span class="skill-item">Firebase</span>
+            <span class="skill-item">SQL Queries</span>
+          </div>
+        </div>
+
+        <!-- Tools & Technologies -->
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fa-solid fa-tools"></i>
+          </div>
+          <h4>Tools & Technologies</h4>
+          <div class="skill-items">
+            <span class="skill-item">Git/GitHub</span>
+            <span class="skill-item">Postman</span>
+            <span class="skill-item">Figma</span>
+            <span class="skill-item">Trello</span>
+            <span class="skill-item">VS Code</span>
+            <span class="skill-item">Odoo</span>
+            <span class="skill-item">API Debugging</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills Section -->
+      <div class="soft-skills-section">
+        <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 1rem; font-size: 2rem;">
+          <i class="fa-solid fa-lightbulb"></i> Soft Skills
+        </h3>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem;">Essential skills that drive my professional success</p>
+        
+        <div class="soft-skills-grid">
+          <div class="soft-skill-item">
+            <i class="fa-solid fa-brain"></i>
+            <span>Critical Thinking</span>
+          </div>
+          <div class="soft-skill-item">
+            <i class="fa-solid fa-puzzle-piece"></i>
+            <span>Problem Solving</span>
+          </div>
+          <div class="soft-skill-item">
+            <i class="fa-solid fa-users"></i>
+            <span>Teamwork</span>
+          </div>
+          <div class="soft-skill-item">
+            <i class="fa-solid fa-comments"></i>
+            <span>Communication</span>
+          </div>
+          <div class="soft-skill-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>Time Management</span>
+          </div>
+          <div class="soft-skill-item">
+            <i class="fa-solid fa-sync-alt"></i>
+            <span>Adaptability</span>
+          </div>
+          <div class="soft-skill-item">
+            <i class="fa-solid fa-eye"></i>
+            <span>Attention to Detail</span>
+          </div>
+          <div class="soft-skill-item">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Self-Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section experience-section">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="experience-card">
+            <h4>Customer Management Analyst Trainee</h4>
+            <div class="company"><i class="fa-solid fa-building"></i> Orange</div>
+            <div class="date"><i class="fa-regular fa-calendar"></i> June 2025 – Present</div>
+            <ul>
+              <li>Worked within the Customer Management department on enterprise systems (ECRM, CNS, OPC, Tikram, BDT, Pointing)</li>
+              <li>Handled application issues, data corrections, and system investigations</li>
+              <li>Queried, analyzed, and updated customer records using Oracle Toad, supporting 10+ daily operational requests</li>
+              <li>Verified customer data and service status, contributing to improved data accuracy and service delivery</li>
+            </ul>
+          </div>
+
+          <div class="experience-card">
+            <h4>Orange Coding Academy Trainee</h4>
+            <div class="company"><i class="fa-solid fa-building"></i> Orange Coding Academy</div>
+            <div class="date"><i class="fa-regular fa-calendar"></i> Dec 2024 – June 2025</div>
+            <ul>
+              <li>Developed responsive UIs using React and Tailwind CSS</li>
+              <li>Built REST APIs with Node.js and Express</li>
+              <li>Managed SQL (MySQL, PostgreSQL, Oracle) and NoSQL (MongoDB, Firebase) databases</li>
+              <li>Built 10+ web projects applying technical and agile practices</li>
+              <li>Worked in Scrum teams using GitHub, Figma, Trello, and VS Code</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+ 
+<section id="projects" class="section projects-section">
+  <div class="container">
+
+    <!-- HEADER -->
+    <h2 class="section-title">My Projects</h2>
+    <p class="projects-desc">
+      A showcase of my web development projects demonstrating full-stack capabilities
+    </p>
+
+    <!-- TABS -->
+    <div class="projects-tabs">
+      <button class="tab-btn active" data-tab="all">All Projects</button>
+      <button class="tab-btn" data-tab="fullstack">Full Stack</button>
+      <button class="tab-btn" data-tab="frontend">Frontend</button>
+      <button class="tab-btn" data-tab="backend">Backend</button>
+    </div>
+
+    <!-- ALL -->
+    <div class="tab-content active" id="all-tab">
+      <div class="projects-carousel-container">
+        <button class="carousel-arrow prev" data-carousel="all">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="carousel-wrapper">
+          <div class="projects-carousel" id="all-carousel"></div>
+        </div>
+
+        <button class="carousel-arrow next" data-carousel="all">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="carousel-dots" id="all-dots"></div>
+    </div>
+
+    <!-- FULLSTACK -->
+    <div class="tab-content" id="fullstack-tab">
+      <div class="projects-carousel-container">
+        <button class="carousel-arrow prev" data-carousel="fullstack">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="carousel-wrapper">
+          <div class="projects-carousel" id="fullstack-carousel"></div>
+        </div>
+
+        <button class="carousel-arrow next" data-carousel="fullstack">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="carousel-dots" id="fullstack-dots"></div>
+    </div>
+
+    <!-- FRONTEND -->
+    <div class="tab-content" id="frontend-tab">
+      <div class="projects-carousel-container">
+        <button class="carousel-arrow prev" data-carousel="frontend">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="carousel-wrapper">
+          <div class="projects-carousel" id="frontend-carousel"></div>
+        </div>
+
+        <button class="carousel-arrow next" data-carousel="frontend">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="carousel-dots" id="frontend-dots"></div>
+    </div>
+
+    <!-- BACKEND -->
+    <div class="tab-content" id="backend-tab">
+      <div class="projects-carousel-container">
+        <button class="carousel-arrow prev" data-carousel="backend">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="carousel-wrapper">
+          <div class="projects-carousel" id="backend-carousel"></div>
+        </div>
+
+        <button class="carousel-arrow next" data-carousel="backend">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="carousel-dots" id="backend-dots"></div>
+    </div>
+
+    <!-- View More Button -->
+    <div class="view-more-projects">
+      <a href="https://github.com/hebam3aitah" target="_blank" style="text-decoration: none;">
+        <button class="view-more-btn">
+          <i class="fa-brands fa-github"></i> View All Projects on GitHub
+        </button>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="section certifications-section">
+    <div class="container">
+      <h2 class="section-title">Certifications & Education</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="cert-card">
+            <h5><i class="fa-solid fa-graduation-cap"></i> B.Sc. in Software Engineering</h5>
+            <p class="issuer">Al-Hussein Bin Talal University – Maan, Jordan</p>
+            <p class="date">Feb 2021 - Oct 2024 | Grade: Very Good</p>
+          </div>
+          
+          <div class="cert-card">
+            <h5><i class="fa-solid fa-certificate"></i> Full-Stack Web Development Training</h5>
+            <p class="issuer">Coding Academy by Orange</p>
+            <p class="date">June 2025</p>
+            <p>Intensive course in Full-Stack Web Development in collaboration with Simplon.co and Princess Sumaya University for Technology (PSUT)</p>
+          </div>
+          
+          <div class="cert-card">
+            <h5><i class="fa-solid fa-certificate"></i> SQL (Intermediate)</h5>
+            <p class="issuer">HackerRank</p>
+            <p class="date">Nov 2025</p>
+          </div>
+
+          <div class="cert-card">
+            <h5><i class="fa-solid fa-users"></i> Voluntary Experience</h5>
+            <p>• Member of the Public Relations Unit – Association of Energy Engineers (AEE)</p>
+          </br>
+            <p>• Member of IEEE – Participated in conferences and outreach initiatives</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- Contact Section -->
+<section id="contact" class="section contact-pro">
+  <div class="container">
+    <h2 class="section-title" style="color: var(--secondary-color);">Contact</h2>
+    <p class="contact-subtitle">
+      Let’s talk! Choose a channel or send me a message directly.
+    </p>
+
+    <div class="contact-grid">
+      <!-- Left: Contact Methods -->
+      <div class="contact-card contact-methods">
+        <div class="contact-card-header">
+          <h3><i class="fa-solid fa-paper-plane"></i> Reach me</h3>
+          <p>Fast links + copy details</p>
+        </div>
+
+        <div class="contact-actions">
+          <a class="contact-action" href="mailto:hebam3aitah@gmail.com">
+            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+            <span class="text">
+              <strong>Email</strong>
+              <small>hebam3aitah@gmail.com</small>
+            </span>
+            <span class="go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          <a class="contact-action" target="_blank" rel="noopener noreferrer"
+             href="https://wa.me/962789908162?text=Hi%20Heba%20%F0%9F%91%8B%20I%20would%20like%20to%20connect%20with%20you.">
+            <span class="icon"><i class="fa-brands fa-whatsapp"></i></span>
+            <span class="text">
+              <strong>WhatsApp</strong>
+              <small>Chat with me</small>
+            </span>
+            <span class="go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          <a class="contact-action" target="_blank" rel="noopener noreferrer"
+             href="https://www.linkedin.com/in/heba-al-maitah">
+            <span class="icon"><i class="fa-brands fa-linkedin-in"></i></span>
+            <span class="text">
+              <strong>LinkedIn</strong>
+              <small>Connect / Message</small>
+            </span>
+            <span class="go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+
+          <a class="contact-action" href="tel:+962789908162">
+            <span class="icon"><i class="fa-solid fa-phone"></i></span>
+            <span class="text">
+              <strong>Call</strong>
+              <small>+962 789 908 162</small>
+            </span>
+            <span class="go"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+        </div>
+
+        <div class="contact-copy">
+          <button class="copy-btn" data-copy="hebam3aitah@gmail.com">
+            <i class="fa-regular fa-copy"></i> Copy Email
+          </button>
+          <button class="copy-btn" data-copy="+962789908162">
+            <i class="fa-regular fa-copy"></i> Copy Phone
+          </button>
+          <span class="copy-toast" id="copyToast">Copied!</span>
+        </div>
+      </div>
+
+      <!-- Right: Message Form -->
+      <div class="contact-card contact-form">
+        <div class="contact-card-header">
+          <h3><i class="fa-solid fa-message"></i> Send a message</h3>
+          <p>It will open your email app with the message ready.</p>
+        </div>
+
+        <form id="contactForm" class="form-grid">
+          <div class="form-row">
+            <label>Your Name</label>
+            <input type="text" id="name" placeholder="e.g., Sarah Ahmad" required />
+          </div>
+
+          <div class="form-row">
+            <label>Your Email</label>
+            <input type="email" id="fromEmail" placeholder="e.g., sarah@email.com" required />
+          </div>
+
+          <div class="form-row full">
+            <label>Subject</label>
+            <input type="text" id="subject" placeholder="e.g., Job opportunity / Collaboration" required />
+          </div>
+
+          <div class="form-row full">
+            <label>Message</label>
+            <textarea id="message" rows="5" placeholder="Write your message..." required></textarea>
+          </div>
+
+          <div class="form-row full form-actions">
+            <button type="submit" class="send-btn">
+              <i class="fa-solid fa-paper-plane"></i> Send Email
+            </button>
+
+            <button type="button" class="send-btn ghost" id="sendWhatsApp">
+              <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
+            </button>
+          </div>
+
+          <small class="hint">
+            Tip: For urgent messages, WhatsApp is fastest.
+          </small>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="text-center">
+        <p style="color: rgba(232, 233, 233, 0.7); margin: 0;">
+          © 2026 Heba Al-Maitah • All Rights Reserved | Made with <i class="fa-solid fa-heart" style="color: #ffffff;"></i> and <i class="fa-solid fa-code"></i>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+</body>
 </html>
