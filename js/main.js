@@ -1,48 +1,38 @@
-/* main.js
-   - Smooth scroll + active nav
-   - Render projects from window.PROJECTS
-   - Tabs + carousel (with dots) for projects
-   - Copy buttons (email/phone)
-   - Contact form -> mailto + WhatsApp
-   - Close Bootstrap navbar on mobile after click
-*/
-
 document.addEventListener("DOMContentLoaded", () => {
-  // -----------------------------
-  // Config
-  // -----------------------------
+  /* ============================================================
+     CONFIG
+  ============================================================ */
   const YOUR_EMAIL = "hebam3aitah@gmail.com";
   const YOUR_WA = "962789908162";
 
-  // -----------------------------
-  // Helpers
-  // -----------------------------
-  const qs = (sel, root = document) => root.querySelector(sel);
-  const qsa = (sel, root = document) => [...root.querySelectorAll(sel)];
+  /* ============================================================
+     HELPERS
+  ============================================================ */
+  const qs = (s, r = document) => r.querySelector(s);
+  const qsa = (s, r = document) => [...r.querySelectorAll(s)];
 
-  // -----------------------------
-  // Smooth scroll + close navbar on mobile
-  // -----------------------------
-  qsa('.navbar a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const href = this.getAttribute("href");
+  /* ============================================================
+     SMOOTH SCROLL + CLOSE NAVBAR (MOBILE)
+  ============================================================ */
+  qsa('.navbar a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
       const target = href ? qs(href) : null;
       if (!target) return;
 
       e.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // Close navbar collapse on mobile (Bootstrap)
-      const navCollapse = qs("#navbarNav");
-      if (navCollapse && navCollapse.classList.contains("show") && window.bootstrap?.Collapse) {
-        new bootstrap.Collapse(navCollapse).hide();
+      const nav = qs("#navbarNav");
+      if (nav?.classList.contains("show") && window.bootstrap?.Collapse) {
+        new bootstrap.Collapse(nav).hide();
       }
     });
   });
 
-  // -----------------------------
-  // Active nav link on scroll
-  // -----------------------------
+  /* ============================================================
+     ACTIVE NAV LINK ON SCROLL
+  ============================================================ */
   const sections = qsa("section[id]");
   const navLinks = qsa(".nav-link");
 
@@ -50,45 +40,41 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!sections.length) return;
 
     let current = sections[0].id;
-    sections.forEach((section) => {
-      const top = section.offsetTop;
-      if (window.pageYOffset >= top - 200) current = section.id;
+    sections.forEach((sec) => {
+      if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
     });
 
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${current}`) link.classList.add("active");
+    navLinks.forEach((a) => {
+      a.classList.toggle("active", a.getAttribute("href") === `#${current}`);
     });
   };
 
   window.addEventListener("scroll", setActiveNav);
   setActiveNav();
 
-  // -----------------------------
-  // Copy buttons (Contact)
-  // -----------------------------
+  /* ============================================================
+     COPY BUTTONS (EMAIL / PHONE)
+  ============================================================ */
   const toast = qs("#copyToast");
 
-  const showToast = (text = "Copied!") => {
+  const showToast = (txt = "Copied!") => {
     if (!toast) return;
-    toast.textContent = text;
+    toast.textContent = txt;
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 1200);
   };
 
-  const copyText = async (text) => {
-    // Modern clipboard (requires https/localhost)
+  const copyText = async (txt) => {
     try {
       if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(txt);
         return true;
       }
     } catch (_) {}
 
-    // Fallback
     try {
       const ta = document.createElement("textarea");
-      ta.value = text;
+      ta.value = txt;
       ta.style.position = "fixed";
       ta.style.left = "-9999px";
       ta.style.top = "-9999px";
@@ -105,84 +91,85 @@ document.addEventListener("DOMContentLoaded", () => {
 
   qsa(".copy-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
-      const text = btn.getAttribute("data-copy") || "";
-      const ok = await copyText(text);
-      showToast(ok ? "Copied!" : "Copy blocked (use https/localhost)");
+      const ok = await copyText(btn.dataset.copy || "");
+      showToast(ok ? "Copied!" : "Copy blocked");
     });
   });
 
-  // -----------------------------
-  // Contact form -> mailto + WhatsApp
-  // -----------------------------
-  const contactForm = qs("#contactForm");
+  /* ============================================================
+     CONTACT FORM (MAILTO + WHATSAPP)
+  ============================================================ */
+  const form = qs("#contactForm");
   const waBtn = qs("#sendWhatsApp");
 
-  const buildMessage = () => {
+  const buildMsg = () => {
     const name = (qs("#name")?.value || "").trim();
-    const fromEmail = (qs("#fromEmail")?.value || "").trim();
+    const email = (qs("#fromEmail")?.value || "").trim();
     const subject = (qs("#subject")?.value || "").trim();
-    const message = (qs("#message")?.value || "").trim();
+    const msg = (qs("#message")?.value || "").trim();
 
-    const body =
-`Hi Heba,
+    return {
+      subject,
+      body: `Hi Heba,
 
 Name: ${name}
-Email: ${fromEmail}
+Email: ${email}
 
 Message:
-${message}
+${msg}
 
-— Sent from your portfolio website`;
-
-    return { subject, body };
+— Sent from portfolio`,
+    };
   };
 
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const { subject, body } = buildMessage();
-      const mailto = `mailto:${YOUR_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
-    });
-  }
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const { subject, body } = buildMsg();
+    window.location.href = `mailto:${YOUR_EMAIL}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+  });
 
-  if (waBtn) {
-    waBtn.addEventListener("click", () => {
-      const { subject, body } = buildMessage();
-      const text = `${subject}\n\n${body}`;
-      const url = `https://wa.me/${YOUR_WA}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank", "noopener");
-    });
-  }
+  waBtn?.addEventListener("click", () => {
+    const { subject, body } = buildMsg();
+    window.open(
+      `https://wa.me/${YOUR_WA}?text=${encodeURIComponent(subject + "\n\n" + body)}`,
+      "_blank",
+      "noopener"
+    );
+  });
 
-  // ============================================================
-  // Projects: render from window.PROJECTS + Tabs + Carousel
-  // ============================================================
-
-  // Expecting:
-  // window.PROJECTS = [
-  //  { title, desc, img, tech:[], github, live, category:"fullstack|frontend|backend" }
-  // ]
+  /* ============================================================
+     PROJECTS (RENDER + TABS + CAROUSEL)
+  ============================================================ */
   const PROJECTS = Array.isArray(window.PROJECTS) ? window.PROJECTS : [];
 
+  const carouselIds = ["all", "fullstack", "frontend", "backend"];
+  const pos = { all: 0, fullstack: 0, frontend: 0, backend: 0 };
+
   const projectCardHTML = (p) => {
-    const techHTML = (p.tech || []).map((t) => `<span class="tool-tag">${t}</span>`).join("");
+    const techHTML = (p.tech || [])
+      .map((t) => `<span class="tool-tag">${t}</span>`)
+      .join("");
 
     const githubBtn = p.github
-      ? `<a href="${p.github}" target="_blank" rel="noopener" class="project-link-btn" title="View Code">
-           <i class="fa-brands fa-github"></i>
+      ? `<a href="${p.github}" target="_blank" rel="noopener"
+            class="project-link-btn" title="View Code">
+            <i class="fa-brands fa-github"></i>
          </a>`
       : "";
 
     const liveBtn = p.live
-      ? `<a href="${p.live}" target="_blank" rel="noopener" class="project-link-btn" title="Live Demo">
-           <i class="fa-solid fa-external-link-alt"></i>
+      ? `<a href="${p.live}" target="_blank" rel="noopener"
+            class="project-link-btn" title="Live Demo">
+            <i class="fa-solid fa-external-link-alt"></i>
          </a>`
       : "";
 
     const docBtn = p.doc
-      ? `<a href="${p.doc}" target="_blank" rel="noopener" class="project-link-btn" title="Documentation">
-           <i class="fa-solid fa-book"></i>
+      ? `<a href="${p.doc}" target="_blank" rel="noopener"
+            class="project-link-btn" title="Documentation">
+            <i class="fa-solid fa-book"></i>
          </a>`
       : "";
 
@@ -228,141 +215,124 @@ ${message}
     if (back) back.innerHTML = PROJECTS.filter((p) => p.category === "backend").map(projectCardHTML).join("");
   };
 
-  // Carousel state
-  const carouselIds = ["all", "fullstack", "frontend", "backend"];
-  const carouselPositions = { all: 0, fullstack: 0, frontend: 0, backend: 0 };
-
   const getGapPx = (carouselEl) => {
-    // Try to read CSS gap from computed style
     const styles = window.getComputedStyle(carouselEl);
-    // For flex, browsers may expose gap in `gap` or `columnGap`
     const gap = parseFloat(styles.columnGap || styles.gap || "32");
     return Number.isFinite(gap) ? gap : 32;
   };
 
-  const updateCarouselButtons = (carouselId) => {
-    const carousel = qs(`#${carouselId}-carousel`);
-    const prevBtn = qs(`.carousel-arrow.prev[data-carousel="${carouselId}"]`);
-    const nextBtn = qs(`.carousel-arrow.next[data-carousel="${carouselId}"]`);
-    if (!carousel || !prevBtn || !nextBtn) return;
+  const maxPositionFor = (id) => {
+    const car = qs(`#${id}-carousel`);
+    if (!car) return 0;
+    const cards = qsa(".project-card", car);
 
-    const cards = qsa(".project-card", carousel);
-    const maxPosition = Math.max(0, cards.length - 2);
-
-    prevBtn.disabled = carouselPositions[carouselId] === 0;
-    nextBtn.disabled = carouselPositions[carouselId] >= maxPosition;
+    return Math.max(0, cards.length - 2);
   };
 
-  const createDots = (carouselId) => {
-    const carousel = qs(`#${carouselId}-carousel`);
-    const dotsContainer = qs(`#${carouselId}-dots`);
-    if (!carousel || !dotsContainer) return;
+  const updateDots = (id) => {
+    const dots = qsa(`#${id}-dots .dot`);
+    dots.forEach((d, i) => d.classList.toggle("active", i === pos[id]));
+  };
 
-    const cards = qsa(".project-card", carousel);
-    // if we show 2 cards per view, dots ~ cards-1 (like your original)
-    const numDots = Math.max(1, cards.length - 1);
+  const createDots = (id) => {
+    const dotsWrap = qs(`#${id}-dots`);
+    const car = qs(`#${id}-carousel`);
+    if (!dotsWrap || !car) return;
 
-    dotsContainer.innerHTML = "";
+    const cards = qsa(".project-card", car);
+    const numDots = Math.max(1, cards.length - 1); // زي شغلك القديم
+    dotsWrap.innerHTML = "";
+
     for (let i = 0; i < numDots; i++) {
-      const dot = document.createElement("div");
-      dot.className = "dot" + (i === 0 ? " active" : "");
-      dot.addEventListener("click", () => {
-        carouselPositions[carouselId] = i;
-        moveCarousel(carouselId);
+      const d = document.createElement("div");
+      d.className = "dot" + (i === 0 ? " active" : "");
+      d.addEventListener("click", () => {
+        pos[id] = i;
+        moveCarousel(id);
       });
-      dotsContainer.appendChild(dot);
+      dotsWrap.appendChild(d);
     }
   };
 
-  const updateDots = (carouselId) => {
-    const dotsContainer = qs(`#${carouselId}-dots`);
-    if (!dotsContainer) return;
+  const updateArrows = (id) => {
+    const prev = qs(`.carousel-arrow.prev[data-carousel="${id}"]`);
+    const next = qs(`.carousel-arrow.next[data-carousel="${id}"]`);
+    if (!prev || !next) return;
 
-    const dots = qsa(".dot", dotsContainer);
-    dots.forEach((dot, index) => {
-      dot.classList.toggle("active", index === carouselPositions[carouselId]);
-    });
+    const maxPos = maxPositionFor(id);
+    prev.disabled = pos[id] <= 0;
+    next.disabled = pos[id] >= maxPos;
   };
 
-  const moveCarousel = (carouselId) => {
-    const carousel = qs(`#${carouselId}-carousel`);
-    if (!carousel) return;
+  const moveCarousel = (id) => {
+    const car = qs(`#${id}-carousel`);
+    if (!car) return;
 
-    const cards = qsa(".project-card", carousel);
+    const cards = qsa(".project-card", car);
     if (!cards.length) return;
 
-    const cardWidth = cards[0].offsetWidth;
-    const gap = getGapPx(carousel);
-    const moveAmount = (cardWidth + gap) * carouselPositions[carouselId];
+    const gap = getGapPx(car);
+    const move = (cards[0].offsetWidth + gap) * pos[id];
 
-    carousel.style.transform = `translateX(-${moveAmount}px)`;
-    updateCarouselButtons(carouselId);
-    updateDots(carouselId);
+    car.style.transform = `translateX(-${move}px)`;
+    updateDots(id);
+    updateArrows(id);
   };
 
   // Tabs
-  const tabBtns = qsa(".tab-btn");
-  const tabContents = qsa(".tab-content");
-
-  tabBtns.forEach((btn) => {
+  qsa(".tab-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const tabName = btn.getAttribute("data-tab");
-      if (!tabName) return;
+      const tab = btn.dataset.tab;
+      if (!tab) return;
 
-      tabBtns.forEach((b) => b.classList.remove("active"));
-      tabContents.forEach((c) => c.classList.remove("active"));
+      qsa(".tab-btn").forEach((b) => b.classList.remove("active"));
+      qsa(".tab-content").forEach((c) => c.classList.remove("active"));
 
       btn.classList.add("active");
-      const targetTab = qs(`#${tabName}-tab`);
-      if (targetTab) targetTab.classList.add("active");
+      qs(`#${tab}-tab`)?.classList.add("active");
 
-      carouselPositions[tabName] = 0;
-      // ensure carousel is recalculated on tab switch
-      createDots(tabName);
-      updateCarouselButtons(tabName);
-      moveCarousel(tabName);
+      pos[tab] = 0;
+
+      createDots(tab);
+      moveCarousel(tab);
+      updateArrows(tab);
     });
   });
 
   // Arrows
-  qsa(".carousel-arrow").forEach((arrow) => {
-    arrow.addEventListener("click", () => {
-      const carouselId = arrow.getAttribute("data-carousel");
-      if (!carouselId) return;
+  qsa(".carousel-arrow").forEach((a) => {
+    a.addEventListener("click", () => {
+      const id = a.dataset.carousel;
+      if (!id) return;
 
-      const carousel = qs(`#${carouselId}-carousel`);
-      if (!carousel) return;
+      const maxPos = maxPositionFor(id);
 
-      const cards = qsa(".project-card", carousel);
-      const maxPosition = Math.max(0, cards.length - 2);
+      if (a.classList.contains("next")) pos[id] = Math.min(maxPos, pos[id] + 1);
+      else pos[id] = Math.max(0, pos[id] - 1);
 
-      if (arrow.classList.contains("prev")) {
-        carouselPositions[carouselId] = Math.max(0, carouselPositions[carouselId] - 1);
-      } else {
-        carouselPositions[carouselId] = Math.min(maxPosition, carouselPositions[carouselId] + 1);
-      }
-      moveCarousel(carouselId);
+      moveCarousel(id);
     });
   });
 
-  // -----------------------------
   // Init projects
-  // -----------------------------
   renderProjects();
 
-  // After DOM paints + images start loading, recalc sizes
-  // (this prevents "style broken" widths/dots)
   setTimeout(() => {
     carouselIds.forEach((id) => {
-      carouselPositions[id] = 0;
+      pos[id] = 0;
       createDots(id);
-      updateCarouselButtons(id);
       moveCarousel(id);
+      updateArrows(id);
     });
   }, 50);
 
-  // Recalc on resize
   window.addEventListener("resize", () => {
-    carouselIds.forEach((id) => moveCarousel(id));
+    carouselIds.forEach((id) => {
+      pos[id] = Math.min(pos[id], maxPositionFor(id));
+      moveCarousel(id);
+      updateArrows(id);
+    });
   });
+
+
 });

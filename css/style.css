@@ -1293,8 +1293,7 @@ section[id]{
 }
     
 
-    /* Certifications Section */
-    .certifications-section {
+
       background-color: white;
     }
 
@@ -1322,8 +1321,243 @@ section[id]{
     .cert-card .issuer {
       color: var(--accent-color);
       font-weight: 600;
-    }
+    } */
 
+/* ===== Certifications & Education (Timeline redesign) ===== */
+.certifications-section{
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+}
+
+.ce-wrap{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+  margin-top: 2.2rem;
+}
+
+.ce-block{
+  border-radius: 22px;
+  padding: 1.6rem;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.ce-block::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+}
+
+.ce-block-title{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 1.2rem;
+  padding-left: 0.4rem;
+}
+
+.ce-icon{
+  width: 44px;
+  height: 44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(119,16,17,0.12), rgba(165,42,42,0.12));
+  border: 1px solid rgba(119,16,17,0.15);
+  color: var(--primary-color);
+  font-size: 1.05rem;
+}
+
+.ce-block-title h3{
+  margin:0;
+  font-weight: 800;
+  color: #111;
+  font-size: 1.2rem;
+}
+
+.ce-timeline{
+  position: relative;
+  padding-left: 18px;
+  margin-left: 10px;
+}
+
+.ce-timeline::before{
+  content:"";
+  position:absolute;
+  left: 6px;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  background: rgba(119,16,17,0.18);
+}
+
+.ce-item{
+  position: relative;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 14px;
+  margin-bottom: 1rem;
+}
+
+.ce-item:last-child{ margin-bottom: 0; }
+
+.ce-dot{
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  margin-top: 18px;
+  box-shadow: 0 0 0 6px rgba(119,16,17,0.12);
+}
+
+.ce-card{
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 1.1rem 1.1rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ce-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(119,16,17,0.12);
+}
+
+.ce-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ce-head h4{
+  margin:0;
+  font-weight: 800;
+  color: #111;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.ce-badge{
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(119,16,17,0.10), rgba(165,42,42,0.10));
+  border: 1px solid rgba(119,16,17,0.16);
+  color: var(--primary-color);
+  font-weight: 800;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.ce-sub{
+  margin-top: 0.55rem;
+  color: #555;
+  font-weight: 700;
+}
+
+.ce-meta{
+  margin-top: 0.35rem;
+  color: #666;
+  line-height: 1.65;
+}
+
+.ce-vol{
+  margin-top: 1.8rem;
+  border-radius: 22px;
+  padding: 1.6rem;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.ce-vol::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+}
+
+.ce-vol-card{
+  margin-left: 10px;
+  margin-top: 0.8rem;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 18px;
+  padding: 1.1rem 1.2rem;
+}
+
+.ce-vol-card ul{
+  margin:0;
+  padding-left: 1.1rem;
+  color: #555;
+  line-height: 1.9;
+}
+
+/* Smaller 2 buttons for certifications */
+.cert-actions{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 1.3rem;
+  flex-wrap: wrap;
+}
+
+.cert-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;        
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;         
+  line-height: 1;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  white-space: nowrap;
+}
+
+.cert-btn-solid{
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  box-shadow: 0 10px 25px rgba(119,16,17,0.25);
+}
+
+.cert-btn-solid:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(119,16,17,0.35);
+}
+
+.cert-btn-outline{
+  background: #fff;
+  color: var(--primary-color);
+  border-color: rgba(119,16,17,0.35);
+}
+
+.cert-btn-outline:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+
+@media (max-width: 992px){
+  .ce-wrap{ grid-template-columns: 1fr; }
+  .ce-head{ flex-direction: column; align-items: flex-start; }
+}
+
+    
     /* Contact Section */
     .contact-section {
       background: linear-gradient(135deg, var(--primary-color), var(--dark-bg));
@@ -1369,6 +1603,7 @@ section[id]{
     .contact-item a:hover {
       color: var(--secondary-color);
     }
+    
 /* Contact Pro Section */
 .contact-pro{
   background: linear-gradient(135deg, var(--primary-color), var(--dark-bg));
@@ -1446,7 +1681,6 @@ section[id]{
 }
 .contact-action:hover .text strong,
 .contact-action:hover .text small,
-.contact-action:hover .icon,
 .contact-action:hover .go{
   color: #fff;
 }
@@ -1629,15 +1863,12 @@ section[id]{
       }
     }
 
-    /* ===== Contact (Mobile fine-tuning) ===== */
 @media (max-width: 420px){
 
-  /* section padding أقل */
   .contact-pro{
     padding: 56px 0 !important;
   }
 
-  /* العنوان والمسافة تحته */
   .contact-pro .section-title{
     margin-bottom: 14px !important;
     font-size: 2rem !important;
@@ -1648,13 +1879,11 @@ section[id]{
     font-size: .95rem;
   }
 
-  /* الكارد نفسها أصغر */
   .contact-card{
     padding: 16px !important;
     border-radius: 18px !important;
   }
 
-  /* عنوان الكارد */
   .contact-card-header h3{
     font-size: 1.25rem !important;
     margin-bottom: 6px !important;
@@ -1664,7 +1893,6 @@ section[id]{
     margin-bottom: 12px !important;
   }
 
-  /* عناصر Reach me */
   .contact-action{
     padding: 12px 12px !important;
     border-radius: 14px !important;
@@ -1685,7 +1913,6 @@ section[id]{
     font-size: .95rem !important;
   }
 
-  /* زرّين Copy جنب بعض بدون ما يكبروا */
   .contact-copy{
     margin-top: 12px !important;
     gap: 10px !important;
@@ -1698,7 +1925,6 @@ section[id]{
     white-space: nowrap;
   }
 
-  /* الفورم: خليها عمود واحد */
   .form-grid{
     grid-template-columns: 1fr !important;
     gap: 12px !important;
@@ -1711,7 +1937,6 @@ section[id]{
     font-size: .95rem !important;
   }
 
-  /* أزرار الإرسال */
   .form-actions{
     gap: 10px !important;
   }
@@ -1726,7 +1951,6 @@ section[id]{
     margin-top: 4px !important;
   }
 
-  /* الدوائر الخلفية الكبيرة خففيها */
   .contact-pro::before,
   .contact-pro::after{
     width: 240px !important;
