@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const qs = (s, r = document) => r.querySelector(s);
   const qsa = (s, r = document) => [...r.querySelectorAll(s)];
 
+  const visibleCount = () => (window.innerWidth <= 768 ? 1 : 2);
+
   /* ============================================================
      SMOOTH SCROLL + CLOSE NAVBAR (MOBILE)
   ============================================================ */
@@ -101,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ============================================================ */
   const form = qs("#contactForm");
   const waBtn = qs("#sendWhatsApp");
-  
 
   const buildMsg = () => {
     const name = (qs("#name")?.value || "").trim();
@@ -141,7 +142,7 @@ ${msg}
   });
 
   /* ============================================================
-     PROJECTS (RENDER + TABS + CAROUSEL)
+     PROJECTS (RENDER + TABS + CAROUSEL + SWIPE)
   ============================================================ */
   const PROJECTS = Array.isArray(window.PROJECTS) ? window.PROJECTS : [];
 
@@ -211,9 +212,18 @@ ${msg}
     if (!PROJECTS.length) return;
 
     if (all) all.innerHTML = PROJECTS.map(projectCardHTML).join("");
-    if (full) full.innerHTML = PROJECTS.filter((p) => p.category === "fullstack").map(projectCardHTML).join("");
-    if (front) front.innerHTML = PROJECTS.filter((p) => p.category === "frontend").map(projectCardHTML).join("");
-    if (back) back.innerHTML = PROJECTS.filter((p) => p.category === "backend").map(projectCardHTML).join("");
+    if (full)
+      full.innerHTML = PROJECTS.filter((p) => p.category === "fullstack")
+        .map(projectCardHTML)
+        .join("");
+    if (front)
+      front.innerHTML = PROJECTS.filter((p) => p.category === "frontend")
+        .map(projectCardHTML)
+        .join("");
+    if (back)
+      back.innerHTML = PROJECTS.filter((p) => p.category === "backend")
+        .map(projectCardHTML)
+        .join("");
   };
 
   const getGapPx = (carouselEl) => {
@@ -226,8 +236,7 @@ ${msg}
     const car = qs(`#${id}-carousel`);
     if (!car) return 0;
     const cards = qsa(".project-card", car);
-
-    return Math.max(0, cards.length - 2);
+    return Math.max(0, cards.length - visibleCount());
   };
 
   const updateDots = (id) => {
@@ -240,8 +249,7 @@ ${msg}
     const car = qs(`#${id}-carousel`);
     if (!dotsWrap || !car) return;
 
-    const cards = qsa(".project-card", car);
-    const numDots = Math.max(1, cards.length - 1); // زي شغلك القديم
+    const numDots = maxPositionFor(id) + 1; // الصحيح حسب عدد الأعمدة
     dotsWrap.innerHTML = "";
 
     for (let i = 0; i < numDots; i++) {
@@ -293,7 +301,6 @@ ${msg}
       qs(`#${tab}-tab`)?.classList.add("active");
 
       pos[tab] = 0;
-
       createDots(tab);
       moveCarousel(tab);
       updateArrows(tab);
@@ -315,7 +322,105 @@ ${msg}
     });
   });
 
-  // Init projects
+  /* =========================
+     SWIPE (TOUCH) SUPPORT
+  ========================= */
+const addSwipe = (id) => {
+  const car = qs(`#${id}-carousel`);
+  if (!car) return;
+
+  const THRESH = 55;
+
+  // ===== TOUCH =====
+  let tStartX = 0, tStartY = 0, tDragging = false;
+
+  const tStart = (e) => {
+    const t = e.touches?.[0];
+    if (!t) return;
+    tStartX = t.clientX;
+    tStartY = t.clientY;
+    tDragging = true;
+  };
+
+  const tMove = (e) => {
+    if (!tDragging) return;
+    const t = e.touches?.[0];
+    if (!t) return;
+
+    const dx = t.clientX - tStartX;
+    const dy = t.clientY - tStartY;
+
+    // امنعي سكرول الصفحة فقط إذا السحب أفقي
+    if (Math.abs(dx) > Math.abs(dy)) e.preventDefault();
+  };
+
+  const tEnd = (e) => {
+    if (!tDragging) return;
+    tDragging = false;
+
+    const t = e.changedTouches?.[0];
+    if (!t) return;
+
+    const dx = t.clientX - tStartX;
+    const dy = t.clientY - tStartY;
+
+    if (Math.abs(dy) > Math.abs(dx)) return;
+
+    const maxPos = maxPositionFor(id);
+    if (dx <= -THRESH) pos[id] = Math.min(maxPos, pos[id] + 1);
+    else if (dx >= THRESH) pos[id] = Math.max(0, pos[id] - 1);
+
+    moveCarousel(id);
+  };
+
+  car.addEventListener("touchstart", tStart, { passive: true });
+  car.addEventListener("touchmove", tMove, { passive: false });
+  car.addEventListener("touchend", tEnd, { passive: true });
+
+  // ===== MOUSE DRAG (DESKTOP) =====
+  let mDown = false;
+  let mStartX = 0;
+
+  car.style.cursor = "grab";
+
+  const mDownFn = (e) => {
+    // لو ضغط على لينك/زر داخل الكارد لا نسحب
+    if (e.target.closest("a, button")) return;
+
+    mDown = true;
+    mStartX = e.clientX;
+    car.style.cursor = "grabbing";
+    car.style.userSelect = "none";
+  };
+
+  const mMoveFn = (e) => {
+    if (!mDown) return;
+    // ما بنحرك الكاروسيل live (عشان يبقى بسيط)، بس بنجهز dx
+  };
+
+  const mUpFn = (e) => {
+    if (!mDown) return;
+    mDown = false;
+    car.style.cursor = "grab";
+    car.style.userSelect = "";
+
+    const dx = e.clientX - mStartX;
+    const maxPos = maxPositionFor(id);
+
+    if (dx <= -THRESH) pos[id] = Math.min(maxPos, pos[id] + 1);
+    else if (dx >= THRESH) pos[id] = Math.max(0, pos[id] - 1);
+
+    moveCarousel(id);
+  };
+
+  car.addEventListener("mousedown", mDownFn);
+  window.addEventListener("mousemove", mMoveFn);
+  window.addEventListener("mouseup", mUpFn);
+};
+
+  /* ============================================================
+     INIT
+  ============================================================ */
   renderProjects();
 
   setTimeout(() => {
@@ -324,16 +429,16 @@ ${msg}
       createDots(id);
       moveCarousel(id);
       updateArrows(id);
+      addSwipe(id);
     });
   }, 50);
 
   window.addEventListener("resize", () => {
     carouselIds.forEach((id) => {
+      createDots(id); 
       pos[id] = Math.min(pos[id], maxPositionFor(id));
       moveCarousel(id);
       updateArrows(id);
     });
   });
-
-
 });
