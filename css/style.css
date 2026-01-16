@@ -1700,7 +1700,7 @@ section[id]{
   line-height:1.2;
 }
 .contact-action .text strong{ color: var(--primary-color); }
-.contact-action .text small{ color:#666; }
+.contact-action .text small{ color:#5c5454; }
 .contact-action .go{ margin-left:auto; color: var(--primary-color); }
 
 .contact-copy{
