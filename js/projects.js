@@ -23,7 +23,7 @@ window.PROJECTS = [
     title: "LUMIERE Gift Shop",
     desc: "An elegant and user-friendly online gift shop offering a wide range of products, including perfumes, face products, body care, and hair care for both men and women. ",
     img: "image/LUMIERE Gift Shop.png",
-    github: "https://github.com/perfume-city/giftproj",
+    github: "https://github.com/perfume-city/giftproject",
     live: "https://perfume-city.github.io/giftproject/",
     category: "frontend",
     tech: ["HTML", "CSS", "JavaScript","Bootstrap","Firebase " ,"Trello ","Git/GitHub"],

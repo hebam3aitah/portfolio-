@@ -12,6 +12,79 @@ document.addEventListener("DOMContentLoaded", () => {
   const qsa = (s, r = document) => [...r.querySelectorAll(s)];
 
   const visibleCount = () => (window.innerWidth <= 768 ? 1 : 2);
+/* =========================
+   GREETING SPLASH
+========================= */
+const splash = qs("#splash");
+const greetingEl = qs("#greeting");
+
+if (splash && greetingEl) {
+  const greetings = [
+    "Hello", "مرحبا", "Ciao", "Hola", "Bonjour", "Hallo",
+    "Olá", "Привет", "你好", "こんにちは", "안녕하세요"
+  ];
+
+  let i = 0;
+  const switchEveryMs = 180;     // سرعة التبديل
+  const totalDurationMs = 2000;  // مدة ظهور الترحيب
+
+  const interval = setInterval(() => {
+    greetingEl.textContent = greetings[i % greetings.length];
+    i++;
+  }, switchEveryMs);
+
+  setTimeout(() => {
+    clearInterval(interval);
+    splash.classList.add("hide");
+  }, totalDurationMs);
+}
+/* ============================================================
+   PARALLAX SCROLL EFFECT
+============================================================ */
+const parallaxElements = qsa('.skill-card, .experience-card, .project-card');
+
+window.addEventListener('scroll', () => {
+  if (window.innerWidth < 768) return; // بس للديسكتوب
+
+  const scrolled = window.pageYOffset;
+
+  parallaxElements.forEach((el, index) => {
+    const rect = el.getBoundingClientRect();
+    const elementTop = rect.top + scrolled;
+    const speed = 0.05 + (index % 3) * 0.02;
+
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      const yPos = -(scrolled - elementTop) * speed;
+      el.style.transform = `translateY(${yPos}px)`;
+    }
+  });
+});
+/* =========================
+   HERO ROLE TOGGLE
+========================= */
+
+const heroRole = qs("#heroRole");
+
+if (heroRole) {
+  const roles = [
+    "Full Stack Web Developer",
+    "React & Node.js ",
+    "Software Engineer"
+    
+  ];
+
+  let i = 0;
+
+  setInterval(() => {
+    heroRole.style.opacity = 0;
+
+    setTimeout(() => {
+      i = (i + 1) % roles.length;
+      heroRole.textContent = roles[i];
+      heroRole.style.opacity = 1;
+    }, 250);
+  }, 2000);
+}
 
   /* ============================================================
      SMOOTH SCROLL + CLOSE NAVBAR (MOBILE)
@@ -441,4 +514,6 @@ const addSwipe = (id) => {
       updateArrows(id);
     });
   });
+  
 });
+
